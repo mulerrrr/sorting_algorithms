@@ -1,26 +1,42 @@
 #include "sort.h"
 /**
- * bubble_sort - sort array lements from min to max value
- * @array: array
- * @size: array size
+ * bubble_sort - bubble sort algorithm
+ * @array: array as input
+ * @size: size of the array
+ * Return: void
  */
 void bubble_sort(int *array, size_t size)
 {
+	unsigned int j;
+	int swapped = 1;
 
-	size_t i, index, tmp = 0;
-
-	if (size < 2)
+	if ((array == NULL) || size < 2)
 		return;
-	for (i = 0; i < size; i++)
-		for (index = 0; index < size; index++)
+
+	while (swapped != 0)
+	{
+		swapped = 0;
+		for (j = 0; j < size - 1; j++)
 		{
-			if (array[index] > array[index + 1] && array[index + 1])
+			if (array[j] > array[j + 1])
 			{
-			tmp = array[index];
-			array[index] = array[index + 1];
-			array[index + 1] = tmp;
-			print_array(array, size);
+				swap(&array[j], &array[j + 1]);
+				swapped = 1;
+				print_array(array, size);
 			}
 		}
+	}
+}
+/**
+ * swap - swap between two values
+ * @actual: actual value
+ * @next: next value
+ * Return: void
+ */
+void swap(int *actual, int *next)
+{
+	int temp = *actual;
+	*actual = *next;
+	*next = temp;
 }
 
